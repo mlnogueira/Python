@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import random
 
 def jogar():
@@ -5,9 +6,9 @@ def jogar():
     print("***Bem vindo ao jogo da Forca!***")
     print("*********************************")
 
-    frutas = ["banana","maça","abacaxi","pera","morango"]
-    lista = [fruta.upper() for fruta in frutas]
-    palavra_secreta = lista[random.randrange(len(lista)+1)]
+    arquivo = open("palavra.txt","r")
+    lista = [fruta.upper() for fruta in arquivo]
+    palavra_secreta = lista[random.randrange(len(lista)+1)].strip()
     letras_acertadas = ["_" for letra in palavra_secreta]
 
     enforcou = False
