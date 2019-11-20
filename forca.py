@@ -1,10 +1,14 @@
+import random
+
 def jogar():
     print("*********************************")
     print("***Bem vindo ao jogo da Forca!***")
     print("*********************************")
 
-    palavra_secreta = "banana"
-    letras_acertadas = ["_","_","_","_","_","_",]
+    frutas = ["banana","maça","abacaxi","pera","morango"]
+    lista = [fruta.upper() for fruta in frutas]
+    palavra_secreta = lista[random.randrange(len(lista)+1)]
+    letras_acertadas = ["_" for letra in palavra_secreta]
 
     enforcou = False
     acertou = False
@@ -14,11 +18,11 @@ def jogar():
 
     while not enforcou and not acertou:
         chute = input("Qual a primeira letra ?")
-        chute = chute.strip()
+        chute = chute.strip().upper()
 
         index = 0
         for letra in palavra_secreta:
-            if chute.upper() == letra.upper():
+            if chute == letra:
                 letras_acertadas[index] = letra
             index = index + 1
 
@@ -32,10 +36,10 @@ def jogar():
         else:
             erro += 1
 
-        enforcou = erro == 6
+        enforcou = erro == len(palavra_secreta)
 
         if enforcou:
-            print("Fim do Jogo!")
+            print("Perdeu e você foi enforcado! Fim do Jogo!")
         else:
             print(letras_acertadas)
 
